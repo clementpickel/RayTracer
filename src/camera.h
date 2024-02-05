@@ -29,30 +29,23 @@ class camera {
 
     void render(const hittable& world) {
         initialize();
-
         std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
-
         const int num_threads = std::thread::hardware_concurrency(); // Get the number of available threads
-
         std::vector<std::future<std::string>> futures;
-
         for (int j = 0; j < image_height; ++j) {
             std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
             futures.push_back(std::async(std::launch::async, [=, &world] {
                 std::string save = "";
                 for (int i = 0; i < image_width; ++i) {
                     color pixel_color(0, 0, 0);
-
                     for (int sample = 0; sample < samples_per_pixel; sample++) {
                         ray r = get_ray(i, j);
                         pixel_color += ray_color(r, max_depth, world);
                     }
-
                     save += write_color(pixel_color, samples_per_pixel);
                 }
                 return save;
             }));
-            
             // Limit the number of concurrently running threads
             if (futures.size() >= num_threads) {
                 for (auto& future : futures) {
@@ -61,12 +54,10 @@ class camera {
                 futures.clear();
             }
         }
-
         // Wait for any remaining threads to finish and print the final result
         for (auto& future : futures) {
             std::cout << future.get();
         }
-
         std::clog << "\rDone.                 \n";
     }
 
@@ -125,8 +116,9 @@ class camera {
 
             auto ray_origin = (defocus_angle <= 0) ? center : defocus_disk_sample();
             auto ray_direction = pixel_sample - ray_origin;
+            auto ray_time = random_double();
 
-            return ray(ray_origin, ray_direction);
+            return ray(ray_origin, ray_direction, ray_time);
         }
 
         vec3 pixel_sample_square() const {
