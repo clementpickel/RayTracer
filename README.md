@@ -13,7 +13,7 @@ To compile and run the RayTracer, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/RayTracer.git
+    git clone https://github.com/clementpickel/RayTracer.git
     ```
 
 2. Navigate to the project directory:
