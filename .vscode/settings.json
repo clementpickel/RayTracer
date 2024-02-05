@@ -1,6 +1,17 @@
 {
   "files.associations": {
     "cmath": "cpp",
-    "memory": "cpp"
+    "memory": "cpp",
+    "format": "cpp",
+    "istream": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "xlocmes": "cpp",
+    "xlocmon": "cpp",
+    "xlocnum": "cpp",
+    "xloctime": "cpp",
+    "xutility": "cpp",
+    "future": "cpp"
   }
 }
