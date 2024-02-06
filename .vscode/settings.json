@@ -13,6 +13,7 @@
     "xloctime": "cpp",
     "xutility": "cpp",
     "future": "cpp",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "limits": "cpp"
   }
 }
