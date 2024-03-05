@@ -27,7 +27,7 @@ class camera {
     double focus_dist = 10;    // Distance from camera lookfrom point to plane of perfect focus
 
 
-    void render(const hittable& world) {
+    void render_thread(const hittable& world) {
         initialize();
         std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
         const int num_threads = std::thread::hardware_concurrency(); // Get the number of available threads
@@ -58,6 +58,26 @@ class camera {
         for (auto& future : futures) {
             std::cout << future.get();
         }
+        std::clog << "\rDone.                 \n";
+    }
+
+    void render(const hittable& world) {
+        initialize();
+
+        std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+
+        for (int j = 0; j < image_height; ++j) {
+            std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
+            for (int i = 0; i < image_width; ++i) {
+                color pixel_color(0,0,0);
+                for (int sample = 0; sample < samples_per_pixel; ++sample) {
+                    ray r = get_ray(i, j);
+                    pixel_color += ray_color(r, max_depth, world);
+                }
+                write_color(std::cout, pixel_color, samples_per_pixel);
+            }
+        }
+
         std::clog << "\rDone.                 \n";
     }
 
