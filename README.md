@@ -12,29 +12,33 @@ To compile and run the RayTracer, follow these steps:
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/clementpickel/RayTracer.git
-    ```
+   ```bash
+   git clone https://github.com/clementpickel/RayTracer.git
+   ```
 
 2. Navigate to the project directory:
 
-    ```bash
-    cd RayTracer
-    ```
+   ```bash
+   cd RayTracer
+   ```
 
 3. Compile the source code:
 
-    ```bash
-    g++ src/main.cpp -o rayTracer
-    ```
+   ```bash
+   g++ src/main.cpp -o rayTracer
+   ```
 
 4. Run the executable:
 
-    ```bash
-    ./rayTracer > output_file.ppm
-    ```
+   ```bash
+   ./rayTracer > output_file.ppm
+   ```
 
 This will generate the rendered image using the implemented RayTracer.
+
+## Result
+
+![Rendered Image](images/final.png)
 
 ## Resources
 
